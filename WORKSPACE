@@ -3,6 +3,7 @@ workspace(name = "rules_scala_proto")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 skylib_version = "1.0.3"
+
 http_archive(
     name = "bazel_skylib",
     sha256 = "1c531376ac7e5a180e0237938a2536de0c54d93f5c278634818e0efc952dd56c",
@@ -10,26 +11,27 @@ http_archive(
     url = "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/{}/bazel-skylib-{}.tar.gz".format(skylib_version, skylib_version),
 )
 
-rules_scala_version = "5df8033f752be64fbe2cedfd1bdbad56e2033b15"
+rules_scala_version = "e7a948ad1948058a7a5ddfbd9d1629d6db839933"
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "b7fa29db72408a972e6b6685d1bc17465b3108b620cb56d9b1700cf6f70f624a",
+    sha256 = "76e1abb8a54f61ada974e6e9af689c59fd9f0518b49be6be7a631ce9fa45f236",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
 )
 
 load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+
 scala_config()
 
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "cf754718b0aa945b00550ed7962ddc167167bd922b842199eeb6505e6f344852",
-    strip_prefix = "protobuf-3.11.3",
+    sha256 = "c6003e1d2e7fefa78a3039f19f383b4f3a61e81be8c19356f85b6461998ad3db",
+    strip_prefix = "protobuf-3.17.3",
     urls = [
-        "https://mirror.bazel.build/github.com/protocolbuffers/protobuf/archive/v3.11.3.tar.gz",
-        "https://github.com/protocolbuffers/protobuf/archive/v3.11.3.tar.gz",
+        "https://mirror.bazel.build/github.com/protocolbuffers/protobuf/archive/v3.17.3.tar.gz",
+        "https://github.com/protocolbuffers/protobuf/archive/v3.17.3.tar.gz",
     ],
 )
 
@@ -77,7 +79,9 @@ http_archive(
 register_toolchains("//:custom_scala_toolchain")
 
 register_toolchains("@io_bazel_rules_scala//scala_proto:default_toolchain")
+
 register_toolchains("//:custom_proto_deps_toolchain")
+
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 RULES_JVM_EXTERNAL_TAG = "3.2"
@@ -90,7 +94,6 @@ http_archive(
     strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_TAG,
     url = "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" % RULES_JVM_EXTERNAL_TAG,
 )
-
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 load("@rules_jvm_external//:specs.bzl", "maven")
@@ -136,7 +139,6 @@ maven_install(
         "com.lmax:disruptor:3.4.2",
         "io.opencensus:opencensus-impl-core:0.22.1",
         "io.opencensus:opencensus-contrib-grpc-metrics:0.22.1",
-
         "org.scalameta:common_2.12:jar:4.3.0",
         "org.scalameta:fastparse_2.12:jar:1.0.1",
         "org.scalameta:fastparse-utils_2.12:jar:1.0.1",
