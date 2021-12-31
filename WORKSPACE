@@ -11,11 +11,11 @@ http_archive(
     url = "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/{}/bazel-skylib-{}.tar.gz".format(skylib_version, skylib_version),
 )
 
-rules_scala_version = "e7a948ad1948058a7a5ddfbd9d1629d6db839933"
+rules_scala_version = "5ab2eda264739d4687fbc7935f424def0f3fafd7"
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "76e1abb8a54f61ada974e6e9af689c59fd9f0518b49be6be7a631ce9fa45f236",
+    sha256 = "19d37e639b20abd36ed63d45659d760a5ad784e13b305bc4f387f00b725be250",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
@@ -23,7 +23,7 @@ http_archive(
 
 load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
 
-scala_config()
+scala_config(scala_version = "2.13.7")
 
 http_archive(
     name = "com_google_protobuf",
@@ -84,9 +84,9 @@ register_toolchains("//:custom_proto_deps_toolchain")
 
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-RULES_JVM_EXTERNAL_TAG = "3.2"
+RULES_JVM_EXTERNAL_TAG = "4.2"
 
-RULES_JVM_EXTERNAL_SHA = "82262ff4223c5fda6fb7ff8bd63db8131b51b413d26eb49e3131037e79e324af"
+RULES_JVM_EXTERNAL_SHA = "cd1a77b7b02e8e008439ca76fd34f5b07aecb8c752961f9640dea15e9e5ba1ca"
 
 http_archive(
     name = "rules_jvm_external",
@@ -100,22 +100,22 @@ load("@rules_jvm_external//:specs.bzl", "maven")
 
 maven_install(
     artifacts = [
-        "org.scala-lang:scala-library:jar:2.12.11",
-        "org.scala-lang:scala-reflect:jar:2.12.11",
-        "org.scala-lang:scala-compiler:jar:2.12.11",
+        "org.scala-lang:scala-library:jar:2.13.7",
+        "org.scala-lang:scala-reflect:jar:2.13.7",
+        "org.scala-lang:scala-compiler:jar:2.13.7",
 
         # common
-        "org.scala-lang.modules:scala-xml_2.12:1.0.5",
-        "org.scala-lang.modules:scala-parser-combinators_2.12:1.0.5",
+        "org.scala-lang.modules:scala-xml_2.13:1.3.0",
+        "org.scala-lang.modules:scala-parser-combinators_2.13:1.1.2",
 
         # proto
-        "com.thesamet.scalapb:compilerplugin_2.12:0.9.7",
-        "com.thesamet.scalapb:protoc-bridge_2.12:0.7.14",
-        "com.thesamet.scalapb:scalapbc_2.12:0.9.7",
-        "com.thesamet.scalapb:scalapb-runtime_2.12:0.9.7",
-        "com.thesamet.scalapb:scalapb-runtime-grpc_2.12:0.9.7",
-        "com.thesamet.scalapb:lenses_2.12:0.9.7",
-        "com.lihaoyi:fastparse_2.12:2.1.3",
+        "com.thesamet.scalapb:compilerplugin_2.13:0.9.7",
+        "com.thesamet.scalapb:protoc-bridge_2.13:0.7.14",
+        "com.thesamet.scalapb:scalapbc_2.13:0.9.7",
+        "com.thesamet.scalapb:scalapb-runtime_2.13:0.9.7",
+        "com.thesamet.scalapb:scalapb-runtime-grpc_2.13:0.9.7",
+        "com.thesamet.scalapb:lenses_2.13:0.9.7",
+        "com.lihaoyi:fastparse_2.13:2.1.3",
         "io.grpc:grpc-core:1.24.0",
         "io.grpc:grpc-api:1.24.0",
         "io.grpc:grpc-protobuf:1.24.0",
@@ -139,32 +139,30 @@ maven_install(
         "com.lmax:disruptor:3.4.2",
         "io.opencensus:opencensus-impl-core:0.22.1",
         "io.opencensus:opencensus-contrib-grpc-metrics:0.22.1",
-        "org.scalameta:common_2.12:jar:4.3.0",
-        "org.scalameta:fastparse_2.12:jar:1.0.1",
-        "org.scalameta:fastparse-utils_2.12:jar:1.0.1",
-        "org.scala-lang.modules:scala-collection-compat_2.12:jar:2.1.2",
-        "org.scalameta:parsers_2.12:jar:4.3.0",
-        "org.scalameta:scalafmt-core_2.12:jar:2.3.2",
-        "org.scalameta:scalameta_2.12:jar:4.3.0",
-        "org.scalameta:trees_2.12:jar:4.3.0",
-        "org.typelevel:paiges-core_2.12:jar:0.2.4",
+        "org.scalameta:common_2.13:jar:4.3.0",
+        "org.scalameta:fastparse_2.13:jar:1.0.1",
+        "org.scalameta:fastparse-utils_2.13:jar:1.0.1",
+        "org.scala-lang.modules:scala-collection-compat_2.13:jar:2.1.2",
+        "org.scalameta:parsers_2.13:jar:4.3.0",
+        "org.scalameta:scalafmt-core_2.13:jar:2.3.2",
+        "org.scalameta:scalameta_2.13:jar:4.3.0",
+        "org.scalameta:trees_2.13:jar:4.3.0",
+        "org.typelevel:paiges-core_2.13:jar:0.2.4",
         "com.typesafe:config:1.3.3",
         "org.scala-lang:scalap:jar:2.11.12",
-        "com.thesamet.scalapb:lenses_2.12:jar:0.9.0",
-        "com.thesamet.scalapb:scalapb-runtime_2.12:jar:0.9.0",
-        "com.lihaoyi:fansi_2.12:jar:0.2.5",
-        "com.lihaoyi:pprint_2.12:jar:0.5.3",
-        "com.lihaoyi:sourcecode_2.12:jar:0.1.7",
+        "com.thesamet.scalapb:lenses_2.13:jar:0.9.0",
+        "com.thesamet.scalapb:scalapb-runtime_2.13:jar:0.9.0",
+        "com.lihaoyi:fansi_2.13:0.2.9",
+        "com.lihaoyi:pprint_2.13:0.6.0",
+        "com.lihaoyi:sourcecode_2.13:jar:0.1.7",
         "com.google.protobuf:protobuf-java:3.10.0",
-        "com.geirsson:metaconfig-core_2.12:jar:0.9.4",
-        "com.geirsson:metaconfig-typesafe-config_2.12:jar:0.9.4",
+        "com.geirsson:metaconfig-core_2.13:jar:0.9.4",
+        "com.geirsson:metaconfig-typesafe-config_2.13:jar:0.9.4",
     ],
     fetch_sources = True,
     generate_compat_repositories = True,
     maven_install_json = "@//:maven_install.json",
     repositories = [
-        "https://jcenter.bintray.com/",
-        "https://maven.google.com",
         "https://repo1.maven.org/maven2",
     ],
 )

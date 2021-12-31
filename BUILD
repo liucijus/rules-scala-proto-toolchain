@@ -29,14 +29,14 @@ declare_deps_provider(
     name = "scala_xml_provider",
     deps_id = "scala_xml",
     visibility = ["//visibility:public"],
-    deps = ["@maven//:org_scala_lang_modules_scala_xml_2_12"],
+    deps = ["@maven//:org_scala_lang_modules_scala_xml_2_13"],
 )
 
 declare_deps_provider(
     name = "parser_combinators_provider",
     deps_id = "parser_combinators",
     visibility = ["//visibility:public"],
-    deps = ["@maven//:org_scala_lang_modules_scala_parser_combinators_2_12"],
+    deps = ["@maven//:org_scala_lang_modules_scala_parser_combinators_2_13"],
 )
 
 declare_deps_provider(
@@ -96,12 +96,12 @@ declare_deps_provider(
     deps_id = "scalapb_compile_deps",
     visibility = ["//visibility:public"],
     deps = [
-        "@maven//:com_lihaoyi_fastparse_2_12",
-        "@maven//:com_thesamet_scalapb_lenses_2_12",
-        "@maven//:com_thesamet_scalapb_scalapb_runtime_2_12",
+        "@com_google_protobuf//:protobuf_java",
+        "@maven//:com_lihaoyi_fastparse_2_13",
+        "@maven//:com_thesamet_scalapb_lenses_2_13",
+        "@maven//:com_thesamet_scalapb_scalapb_runtime_2_13",
         "@maven//:io_grpc_grpc_protobuf",
         "@maven//:org_scala_lang_scala_library",
-        "@com_google_protobuf//:protobuf_java",
     ],
 )
 
@@ -113,7 +113,7 @@ declare_deps_provider(
         "@maven//:com_google_guava_guava",
         "@maven//:com_google_instrumentation_instrumentation_api",
         "@maven//:com_lmax_disruptor",
-        "@maven//:com_thesamet_scalapb_scalapb_runtime_grpc_2_12",
+        "@maven//:com_thesamet_scalapb_scalapb_runtime_grpc_2_13",
         "@maven//:io_grpc_grpc_api",
         "@maven//:io_grpc_grpc_context",
         "@maven//:io_grpc_grpc_core",
@@ -144,7 +144,7 @@ declare_deps_provider(
     visibility = ["//visibility:public"],
     deps = [
         "@com_google_protobuf//:protobuf_java",
-        "@maven//:com_thesamet_scalapb_compilerplugin_2_12",
-        "@maven//:com_thesamet_scalapb_protoc_bridge_2_12",
+        "@maven//:com_thesamet_scalapb_compilerplugin_2_13",
+        "@maven//:com_thesamet_scalapb_protoc_bridge_2_13",
     ],
 )
