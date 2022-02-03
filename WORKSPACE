@@ -150,8 +150,6 @@ maven_install(
         "org.typelevel:paiges-core_2.13:jar:0.2.4",
         "com.typesafe:config:1.3.3",
         "org.scala-lang:scalap:jar:2.11.12",
-        "com.thesamet.scalapb:lenses_2.13:jar:0.9.0",
-        "com.thesamet.scalapb:scalapb-runtime_2.13:jar:0.9.0",
         "com.lihaoyi:fansi_2.13:0.2.9",
         "com.lihaoyi:pprint_2.13:0.6.0",
         "com.lihaoyi:sourcecode_2.13:jar:0.1.7",
